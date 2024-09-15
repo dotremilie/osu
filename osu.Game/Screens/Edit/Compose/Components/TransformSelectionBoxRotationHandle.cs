@@ -16,7 +16,7 @@ using osuTK.Input;
 
 namespace osu.Game.Screens.Edit.Compose.Components
 {
-    public partial class SelectionBoxRotationHandle : SelectionBoxDragHandle, IHasTooltip
+    public partial class TransformSelectionBoxRotationHandle : TransformSelectionBoxDragHandle, IHasTooltip
     {
         public LocalisableString TooltipText { get; private set; }
 
@@ -27,7 +27,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
         private readonly Bindable<float?> cumulativeRotation = new Bindable<float?>();
 
         [Resolved]
-        private SelectionBox selectionBox { get; set; } = null!;
+        private TransformSelectionBox transformSelectionBox { get; set; } = null!;
 
         [Resolved]
         private SelectionRotationHandler? rotationHandler { get; set; }
@@ -114,8 +114,8 @@ namespace osu.Game.Screens.Edit.Compose.Components
         private float convertDragEventToAngleOfRotation(DragEvent e)
         {
             // Adjust coordinate system to the center of SelectionBox
-            float startAngle = MathF.Atan2(e.LastMousePosition.Y - selectionBox.DrawHeight / 2, e.LastMousePosition.X - selectionBox.DrawWidth / 2);
-            float endAngle = MathF.Atan2(e.MousePosition.Y - selectionBox.DrawHeight / 2, e.MousePosition.X - selectionBox.DrawWidth / 2);
+            float startAngle = MathF.Atan2(e.LastMousePosition.Y - transformSelectionBox.DrawHeight / 2, e.LastMousePosition.X - transformSelectionBox.DrawWidth / 2);
+            float endAngle = MathF.Atan2(e.MousePosition.Y - transformSelectionBox.DrawHeight / 2, e.MousePosition.X - transformSelectionBox.DrawWidth / 2);
 
             return (endAngle - startAngle) * 180 / MathF.PI;
         }

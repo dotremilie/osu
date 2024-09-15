@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Mania.Tests.Editor
             AddStep("select everything", () => EditorBeatmap.SelectedHitObjects.AddRange(EditorBeatmap.HitObjects));
             AddStep("flip horizontally over selection", () =>
             {
-                InputManager.MoveMouseTo(this.ChildrenOfType<SelectionBoxButton>().First());
+                InputManager.MoveMouseTo(this.ChildrenOfType<TransformSelectionBoxButton>().First());
                 InputManager.Click(MouseButton.Left);
             });
 

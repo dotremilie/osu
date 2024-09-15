@@ -13,7 +13,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Screens.Edit.Compose.Components
 {
-    public sealed partial class SelectionBoxButton : SelectionBoxControl, IHasTooltip
+    public sealed partial class TransformSelectionBoxButton : TransformSelectionBoxControl, IHasTooltip
     {
         private SpriteIcon icon = null!;
 
@@ -21,7 +21,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
 
         public Action? Action;
 
-        public SelectionBoxButton(IconUsage iconUsage, string tooltip)
+        public TransformSelectionBoxButton(IconUsage iconUsage, string tooltip)
         {
             this.iconUsage = iconUsage;
 

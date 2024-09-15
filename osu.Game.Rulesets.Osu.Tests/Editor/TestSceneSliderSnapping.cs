@@ -135,14 +135,14 @@ namespace osu.Game.Rulesets.Osu.Tests.Editor
         [Test]
         public void TestResizingUnsnappedSliderSnaps()
         {
-            SelectionBoxScaleHandle handle = null;
+            TransformSelectionBoxScaleHandle handle = null;
 
             assertSliderSnapped(false);
 
             AddStep("select slider", () => EditorBeatmap.SelectedHitObjects.Add(slider));
             AddStep("move mouse to scale handle", () =>
             {
-                handle = this.ChildrenOfType<SelectionBoxScaleHandle>().First();
+                handle = this.ChildrenOfType<TransformSelectionBoxScaleHandle>().First();
                 InputManager.MoveMouseTo(handle.ScreenSpaceDrawQuad.Centre);
             });
             AddStep("scale slider", () =>
@@ -157,14 +157,14 @@ namespace osu.Game.Rulesets.Osu.Tests.Editor
         [Test]
         public void TestRotatingUnsnappedSliderDoesNotSnap()
         {
-            SelectionBoxRotationHandle handle = null;
+            TransformSelectionBoxRotationHandle handle = null;
 
             assertSliderSnapped(false);
 
             AddStep("select slider", () => EditorBeatmap.SelectedHitObjects.Add(slider));
             AddStep("move mouse to rotate handle", () =>
             {
-                handle = this.ChildrenOfType<SelectionBoxRotationHandle>().First();
+                handle = this.ChildrenOfType<TransformSelectionBoxRotationHandle>().First();
                 InputManager.MoveMouseTo(handle.ScreenSpaceDrawQuad.Centre);
             });
             AddStep("scale slider", () =>

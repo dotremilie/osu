@@ -63,7 +63,7 @@ namespace osu.Game.Rulesets.Osu.Tests.Editor
 
             AddStep("store distance", () => distanceBefore = slider.Path.Distance);
 
-            AddStep("move mouse to handle", () => InputManager.MoveMouseTo(Editor.ChildrenOfType<SelectionBoxDragHandle>().Skip(1).First()));
+            AddStep("move mouse to handle", () => InputManager.MoveMouseTo(Editor.ChildrenOfType<TransformSelectionBoxDragHandle>().Skip(1).First()));
             AddStep("begin drag", () => InputManager.PressButton(MouseButton.Left));
             moveMouse(new Vector2(300, 300));
             AddStep("end drag", () => InputManager.ReleaseButton(MouseButton.Left));

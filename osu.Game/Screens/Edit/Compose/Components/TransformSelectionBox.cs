@@ -17,7 +17,7 @@ using osuTK.Input;
 namespace osu.Game.Screens.Edit.Compose.Components
 {
     [Cached]
-    public partial class SelectionBox : CompositeDrawable
+    public partial class TransformSelectionBox : CompositeDrawable
     {
         public const float BORDER_RADIUS = 3;
 
@@ -35,9 +35,9 @@ namespace osu.Game.Screens.Edit.Compose.Components
         public Action? OperationStarted;
         public Action? OperationEnded;
 
-        private SelectionBoxButton? reverseButton;
-        private SelectionBoxButton? rotateClockwiseButton;
-        private SelectionBoxButton? rotateCounterClockwiseButton;
+        private TransformSelectionBoxButton? reverseButton;
+        private TransformSelectionBoxButton? rotateClockwiseButton;
+        private TransformSelectionBoxButton? rotateCounterClockwiseButton;
 
         private bool canReverse;
 
@@ -114,7 +114,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
             }
         }
 
-        private SelectionBoxDragHandleContainer dragHandles = null!;
+        private TransformSelectionBoxDragHandleContainer dragHandles = null!;
         private FillFlowContainer buttons = null!;
 
         private OsuSpriteText? selectionDetailsText;
@@ -212,7 +212,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
                         },
                     }
                 },
-                dragHandles = new SelectionBoxDragHandleContainer
+                dragHandles = new TransformSelectionBoxDragHandleContainer
                 {
                     RelativeSizeAxes = Axes.Both,
                     // ensures that the centres of all drag handles line up with the middle of the selection box border.
@@ -277,9 +277,9 @@ namespace osu.Game.Screens.Edit.Compose.Components
             addButton(FontAwesome.Solid.ArrowsAltV, "Flip vertically", () => OnFlip?.Invoke(Direction.Vertical, false));
         }
 
-        private SelectionBoxButton addButton(IconUsage icon, string tooltip, Action action)
+        private TransformSelectionBoxButton addButton(IconUsage icon, string tooltip, Action action)
         {
-            var button = new SelectionBoxButton(icon, tooltip)
+            var button = new TransformSelectionBoxButton(icon, tooltip)
             {
                 Action = action
             };
@@ -312,7 +312,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
 
         private void addScaleHandle(Anchor anchor)
         {
-            var handle = new SelectionBoxScaleHandle
+            var handle = new TransformSelectionBoxScaleHandle
             {
                 Anchor = anchor,
             };
@@ -324,7 +324,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
 
         private void addRotateHandle(Anchor anchor)
         {
-            var handle = new SelectionBoxRotationHandle
+            var handle = new TransformSelectionBoxRotationHandle
             {
                 Anchor = anchor,
             };

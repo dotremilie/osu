@@ -23,8 +23,8 @@ namespace osu.Game.Rulesets.Mania.Edit
 
             var selectedObjects = SelectedItems.OfType<ManiaHitObject>().ToArray();
 
-            SelectionBox.CanFlipX = canFlipX(selectedObjects);
-            SelectionBox.CanFlipY = canFlipY(selectedObjects);
+            TransformSelectionBox.CanFlipX = canFlipX(selectedObjects);
+            TransformSelectionBox.CanFlipY = canFlipY(selectedObjects);
         }
 
         public override bool HandleMovement(MoveSelectionEvent<HitObject> moveEvent)

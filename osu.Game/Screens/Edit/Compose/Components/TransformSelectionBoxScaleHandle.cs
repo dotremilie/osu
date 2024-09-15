@@ -11,7 +11,7 @@ using osuTK.Input;
 
 namespace osu.Game.Screens.Edit.Compose.Components
 {
-    public partial class SelectionBoxScaleHandle : SelectionBoxDragHandle
+    public partial class TransformSelectionBoxScaleHandle : TransformSelectionBoxDragHandle
     {
         [Resolved]
         private SelectionScaleHandler? scaleHandler { get; set; }

@@ -49,7 +49,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
 
         private readonly List<SelectionBlueprint<T>> selectedBlueprints;
 
-        protected SelectionBox SelectionBox { get; private set; } = null!;
+        protected TransformSelectionBox TransformSelectionBox { get; private set; } = null!;
 
         [Resolved(CanBeNull = true)]
         protected IEditorChangeHandler? ChangeHandler { get; private set; }
@@ -84,14 +84,12 @@ namespace osu.Game.Screens.Edit.Compose.Components
             {
                 RotationHandler,
                 ScaleHandler,
-                SelectionBox = CreateSelectionBox(),
+                TransformSelectionBox = CreateSelectionBox(),
             });
-
-            SelectedItems.BindCollectionChanged((_, _) => Scheduler.AddOnce(updateVisibility), true);
         }
 
-        public SelectionBox CreateSelectionBox()
-            => new SelectionBox
+        public TransformSelectionBox CreateSelectionBox()
+            => new TransformSelectionBox
             {
                 OperationStarted = OnOperationBegan,
                 OperationEnded = OnOperationEnded,
@@ -358,19 +356,6 @@ namespace osu.Game.Screens.Edit.Compose.Components
         #region Outline Display
 
         /// <summary>
-        /// Updates whether this <see cref="SelectionHandler{T}"/> is visible.
-        /// </summary>
-        private void updateVisibility()
-        {
-            int count = SelectedItems.Count;
-
-            SelectionBox.Text = count > 0 ? count.ToString() : string.Empty;
-            SelectionBox.FadeTo(count > 0 ? 1 : 0);
-
-            OnSelectionChanged();
-        }
-
-        /// <summary>
         /// Triggered whenever the set of selected items changes.
         /// Should update the selection box's state to match supported operations.
         /// </summary>
@@ -393,8 +378,8 @@ namespace osu.Game.Screens.Edit.Compose.Components
 
             selectionRect = selectionRect.Inflate(INFLATE_SIZE);
 
-            SelectionBox.Position = selectionRect.Location;
-            SelectionBox.Size = selectionRect.Size;
+            TransformSelectionBox.Position = selectionRect.Location;
+            TransformSelectionBox.Size = selectionRect.Size;
         }
 
         #endregion

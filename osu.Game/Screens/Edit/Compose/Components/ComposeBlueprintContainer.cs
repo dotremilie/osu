@@ -79,6 +79,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
 
             // updates to selected are handled for us by SelectionHandler.
             NewCombo.BindTo(SelectionHandler.SelectionNewComboState);
+            TransformSelectionBox.BindTo(SelectionHandler.TransformSelectionBoxState);
 
             // we are responsible for current placement blueprint updated based on state changes.
             NewCombo.ValueChanged += _ => updatePlacementNewCombo();
@@ -212,6 +213,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
         }
 
         public readonly Bindable<TernaryState> NewCombo = new Bindable<TernaryState> { Description = "New Combo" };
+        public readonly Bindable<TernaryState> TransformSelectionBox = new Bindable<TernaryState> { Description = "Transform Selection" };
 
         /// <summary>
         /// A collection of states which will be displayed to the user in the toolbox.
@@ -230,6 +232,8 @@ namespace osu.Game.Screens.Edit.Compose.Components
 
             foreach (var kvp in SelectionHandler.SelectionSampleStates)
                 yield return new TernaryButton(kvp.Value, kvp.Key.Replace("hit", string.Empty).Titleize(), () => GetIconForSample(kvp.Key));
+
+            yield return new TernaryButton(TransformSelectionBox, "Transform Selection", () => new SpriteIcon { Icon = OsuIcon.ExpandB });
         }
 
         private IEnumerable<TernaryButton> createSampleBankTernaryButtons()

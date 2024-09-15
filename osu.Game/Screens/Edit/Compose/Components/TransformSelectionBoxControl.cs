@@ -14,10 +14,10 @@ using osu.Game.Graphics;
 namespace osu.Game.Screens.Edit.Compose.Components
 {
     /// <summary>
-    /// Represents the base appearance for UI controls of the <see cref="SelectionBox"/>,
+    /// Represents the base appearance for UI controls of the <see cref="TransformSelectionBox"/>,
     /// such as scale handles, rotation handles, buttons, etc...
     /// </summary>
-    public abstract partial class SelectionBoxControl : CompositeDrawable
+    public abstract partial class TransformSelectionBoxControl : CompositeDrawable
     {
         public const double TRANSFORM_DURATION = 100;
 

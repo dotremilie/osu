@@ -7,6 +7,7 @@ using System.Linq;
 using Humanizer;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
+using osu.Framework.Graphics;
 using osu.Framework.Graphics.UserInterface;
 using osu.Game.Audio;
 using osu.Game.Beatmaps.ControlPoints;
@@ -37,6 +38,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
             EditorBeatmap.HitObjectUpdated += _ => Scheduler.AddOnce(UpdateTernaryStates);
 
             SelectedItems.CollectionChanged += (_, _) => Scheduler.AddOnce(UpdateTernaryStates);
+            SelectedItems.BindCollectionChanged((_, _) => Scheduler.AddOnce(updateVisibility), true);
         }
 
         protected override void DeleteItems(IEnumerable<HitObject> items) => EditorBeatmap.RemoveRange(items);
@@ -49,6 +51,11 @@ namespace osu.Game.Screens.Edit.Compose.Components
         public readonly Bindable<TernaryState> SelectionNewComboState = new Bindable<TernaryState>();
 
         /// <summary>
+        /// The state of <see cref="TransformSelectionBox"/> for all selected hitobjects.
+        /// </summary>
+        public readonly Bindable<TernaryState> TransformSelectionBoxState = new Bindable<TernaryState>();
+
+        /// <summary>
         /// The state of each sample type for all selected hitobjects. Keys match with <see cref="HitSampleInfo"/> constant specifications.
         /// </summary>
         public readonly Dictionary<string, Bindable<TernaryState>> SelectionSampleStates = new Dictionary<string, Bindable<TernaryState>>();
@@ -57,6 +64,19 @@ namespace osu.Game.Screens.Edit.Compose.Components
         /// The state of each sample bank type for all selected hitobjects.
         /// </summary>
         public readonly Dictionary<string, Bindable<TernaryState>> SelectionBankStates = new Dictionary<string, Bindable<TernaryState>>();
+
+        /// <summary>
+        /// Updates whether <see cref="TransformSelectionBox"/> and <see cref="TransformSelectionBox"/> is visible.
+        /// </summary>
+        private void updateVisibility()
+        {
+            int count = SelectedItems.Count;
+
+            TransformSelectionBox.Text = count > 0 ? count.ToString() : string.Empty;
+            TransformSelectionBox.FadeTo(TransformSelectionBoxState.Value == TernaryState.True && count > 0 ? 1 : 0);
+
+            OnSelectionChanged();
+        }
 
         /// <summary>
         /// Set up ternary state bindables and bind them to selection/hitobject changes (in both directions)
@@ -168,6 +188,9 @@ namespace osu.Game.Screens.Edit.Compose.Components
                         break;
                 }
             };
+
+            // transform selection
+            TransformSelectionBoxState.ValueChanged += _ => updateVisibility();
         }
 
         /// <summary>

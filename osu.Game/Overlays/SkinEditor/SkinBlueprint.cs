@@ -66,7 +66,7 @@ namespace osu.Game.Overlays.SkinEditor
                             RelativeSizeAxes = Axes.Both,
                             Masking = true,
                             CornerRadius = 3,
-                            BorderThickness = SelectionBox.BORDER_RADIUS / 2,
+                            BorderThickness = TransformSelectionBox.BORDER_RADIUS / 2,
                             BorderColour = ColourInfo.GradientVertical(colours.Pink4.Darken(0.4f), colours.Pink4),
                             Children = new Drawable[]
                             {

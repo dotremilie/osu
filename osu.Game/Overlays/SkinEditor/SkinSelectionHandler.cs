@@ -38,7 +38,7 @@ namespace osu.Game.Overlays.SkinEditor
                 UpdatePosition = updateDrawablePosition
             };
 
-            scaleHandler.PerformFlipFromScaleHandles += a => SelectionBox.PerformFlipFromScaleHandles(a);
+            scaleHandler.PerformFlipFromScaleHandles += a => TransformSelectionBox.PerformFlipFromScaleHandles(a);
 
             return scaleHandler;
         }
@@ -91,9 +91,9 @@ namespace osu.Game.Overlays.SkinEditor
         {
             base.OnSelectionChanged();
 
-            SelectionBox.CanFlipX = true;
-            SelectionBox.CanFlipY = true;
-            SelectionBox.CanReverse = false;
+            TransformSelectionBox.CanFlipX = true;
+            TransformSelectionBox.CanFlipY = true;
+            TransformSelectionBox.CanReverse = false;
         }
 
         protected override void DeleteItems(IEnumerable<ISerialisableDrawable> items) =>

@@ -8,7 +8,7 @@ using osu.Framework.Input.Events;
 
 namespace osu.Game.Screens.Edit.Compose.Components
 {
-    public abstract partial class SelectionBoxDragHandle : SelectionBoxControl
+    public abstract partial class TransformSelectionBoxDragHandle : TransformSelectionBoxControl
     {
         protected override bool OnDragStart(DragStartEvent e)
         {
