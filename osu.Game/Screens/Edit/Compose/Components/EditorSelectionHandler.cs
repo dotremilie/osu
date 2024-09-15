@@ -38,7 +38,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
             EditorBeatmap.HitObjectUpdated += _ => Scheduler.AddOnce(UpdateTernaryStates);
 
             SelectedItems.CollectionChanged += (_, _) => Scheduler.AddOnce(UpdateTernaryStates);
-            SelectedItems.BindCollectionChanged((_, _) => Scheduler.AddOnce(updateVisibility), true);
+            SelectedItems.BindCollectionChanged((_, _) => Scheduler.AddOnce(updateTransformSelectionBoxVisibility), true);
         }
 
         protected override void DeleteItems(IEnumerable<HitObject> items) => EditorBeatmap.RemoveRange(items);
@@ -66,9 +66,9 @@ namespace osu.Game.Screens.Edit.Compose.Components
         public readonly Dictionary<string, Bindable<TernaryState>> SelectionBankStates = new Dictionary<string, Bindable<TernaryState>>();
 
         /// <summary>
-        /// Updates whether <see cref="TransformSelectionBox"/> and <see cref="TransformSelectionBox"/> is visible.
+        /// Updates whether <see cref="TransformSelectionBox"/> is visible.
         /// </summary>
-        private void updateVisibility()
+        private void updateTransformSelectionBoxVisibility()
         {
             int count = SelectedItems.Count;
 
@@ -190,7 +190,7 @@ namespace osu.Game.Screens.Edit.Compose.Components
             };
 
             // transform selection
-            TransformSelectionBoxState.ValueChanged += _ => updateVisibility();
+            TransformSelectionBoxState.ValueChanged += _ => updateTransformSelectionBoxVisibility();
         }
 
         /// <summary>
